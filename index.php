@@ -13,7 +13,7 @@
 		<nav>
 			<ul>
 				<li><a href="#">Log In</a></li>
-				<li><a href="#">Submit a Deal</a></li>
+				<li><a href="/submit-deal">Submit a Deal</a></li>
 			</ul>
 		</nav>
 	</header>

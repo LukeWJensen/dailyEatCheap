@@ -25,6 +25,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         url: '/',
         controller: 'MainCtrl',
         templateUrl: decLocalized.views + 'home.html'
+    }).state('submit-deal', {
+        url: '/submit-deal',
+        controller: 'submitDealCtrl',
+        templateUrl: decLocalized.views + 'submitDeal.html'
     });
 
     $httpProvider.interceptors.push([function () {

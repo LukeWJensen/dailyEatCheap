@@ -16,9 +16,11 @@ wp_enqueue_script( 'dec-scripts', get_stylesheet_directory_uri() . '/app/scripts
 
 //controllers
 wp_enqueue_script( 'dec-ctrl-main', get_stylesheet_directory_uri() . '/app/scripts/controllers/main.js', $depends );
+wp_enqueue_script( 'dec-ctrl-submit-deal', get_stylesheet_directory_uri() . '/app/scripts/controllers/submitDeal.js', $depends );
 
 //service factories
-wp_enqueue_script( 'dec-wp-service', get_stylesheet_directory_uri() . '/app/scripts/wp-service.js', $depends );
+wp_enqueue_script( 'dec-wp-service', get_stylesheet_directory_uri() . '/app/scripts/wpService.js', $depends );
+wp_enqueue_script( 'dec-yelp-service', get_stylesheet_directory_uri() . '/app/scripts/yelpService.js', $depends );
 
 //directives
 wp_enqueue_script( 'dec-directives', get_stylesheet_directory_uri() . '/app/scripts/directives.js', $depends );
