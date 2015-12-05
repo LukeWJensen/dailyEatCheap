@@ -8,8 +8,9 @@ wp_register_script( 'angular-resource', get_stylesheet_directory_uri() . '/bower
 wp_register_script( 'angular-sanitize', get_stylesheet_directory_uri() . '/bower_components/angular-sanitize/angular-sanitize.js');
 wp_register_script( 'angular-touch', get_stylesheet_directory_uri() . '/bower_components/angular-touch/angular-touch.js');
 wp_register_script( 'angular-animate', get_stylesheet_directory_uri() . '/bower_components/angular-animate/angular-animate.js');
+wp_register_script( 'oauth-signature', get_stylesheet_directory_uri() . '/bower_components/oauth-signature/dist/oauth-signature.js');
 
-$depends = array( 'angular', 'angular-ui-router', 'angular-resource', 'angular-sanitize', 'angular-touch', 'angular-animate' );
+	$depends = array( 'angular', 'angular-ui-router', 'angular-resource', 'angular-sanitize', 'angular-touch', 'angular-animate', 'oauth-signature' );
 
 //main app file
 wp_enqueue_script( 'dec-scripts', get_stylesheet_directory_uri() . '/app/scripts/app.js', $depends );

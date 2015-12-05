@@ -1,5 +1,15 @@
 <h2>Submit a Deal</h2>
 
+<label for="enter-zip">Enter your zip code to assist restaurant search:</label>
+<input ng-model="search.zip" id="enter-zip" type="text"><br>
+
 <label for="locate-restaurant">Find the restaurant with the deal:</label>
-<input id="locate-restaurant" type="text">
-<button type="submit">Search</button>
+<input ng-model="search.name" id="locate-restaurant" type="text">
+
+<button type="submit" ng-click="searchYelp()">Search</button>
+
+<ul>
+    <li data-ng-repeat="business in businesses">
+        {{business.name}}
+    </li>
+</ul>
