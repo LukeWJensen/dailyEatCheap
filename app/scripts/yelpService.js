@@ -14,15 +14,15 @@ app.service('yelpService', function($http){
         var params = {
             callback: 'angular.callbacks._0',
             location: searchObj.zip,
-            oauth_consumer_key: 'uMiv_Cl7_VFlzD7Yvx4Sug',
-            oauth_token: 'P3nZPos0Lx-fT5btUgolZDqOHmkyAi4u',
+            oauth_consumer_key: decLocalized.yelpOauthConsumerKey,
+            oauth_token: decLocalized.yelpOauthToken,
             oauth_signature_method: "HMAC-SHA1",
             oauth_timestamp: new Date().getTime(),
             oauth_nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
             term: searchObj.name
         };
-        var consumerSecret = 'DXKaD0lYWDyC3A3eE5pb3sr5w_w';
-        var tokenSecret = 'QTXuCgHd4QqgfmfL9kqQgH9Z4io';
+        var consumerSecret = decLocalized.yelpConsumerSecret;
+        var tokenSecret = decLocalized.yelpTokenSecret;
         var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, { encodeSignature: false});
         params['oauth_signature'] = signature;
         $http.jsonp(url, {params: params}).success(callback);
