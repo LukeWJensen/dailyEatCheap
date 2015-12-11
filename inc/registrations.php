@@ -1,21 +1,21 @@
 <?php
 function dec_post_types() {
 
-	//deals
+	//eats
 	$labels = array(
-		'name'               => 'Deals',
-		'singular_name'      => 'Deal',
+		'name'               => 'Eats',
+		'singular_name'      => 'Eat',
 		'add_new'            => 'Add New',
-		'add_new_item'       => 'Add New Deal',
-		'edit_item'          => 'Edit Deal',
-		'new_item'           => 'New Deal',
-		'all_items'          => 'All Deals',
-		'view_item'          => 'View Deal',
-		'search_items'       => 'Search Deals',
-		'not_found'          => 'No Deals found',
-		'not_found_in_trash' => 'No Deals found in Trash',
+		'add_new_item'       => 'Add New Eat',
+		'edit_item'          => 'Edit Eat',
+		'new_item'           => 'New Eat',
+		'all_items'          => 'All Eats',
+		'view_item'          => 'View Eat',
+		'search_items'       => 'Search Eats',
+		'not_found'          => 'No Eats found',
+		'not_found_in_trash' => 'No Eats found in Trash',
 		'parent_item_colon'  => '',
-		'menu_name'          => 'Deals'
+		'menu_name'          => 'Eats'
 	);
 	$args = array(
 		'labels'             => $labels,
@@ -25,16 +25,16 @@ function dec_post_types() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'show_in_rest'       => true,
-		'rest_base'          => 'deals',
+		'rest_base'          => 'Eats',
 		'query_var'          => true,
-		'rewrite'            => array( 'slug' => 'deals' ),
+		'rewrite'            => array( 'slug' => 'eats' ),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => null,
 		'supports'           => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' )
 	);
-	register_post_type( 'deal', $args );
+	register_post_type( 'eat', $args );
 }
 add_action( 'init', 'dec_post_types' );
 
