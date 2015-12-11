@@ -27,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         templateUrl: decLocalized.views + 'home.html'
     }).state('submit-deal', {
         url: '/submit-deal',
-        controller: 'submitDealCtrl',
+        controller: 'submitEatCtrl',
         templateUrl: decLocalized.views + 'submitDeal.html'
     });
 

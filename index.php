@@ -12,7 +12,7 @@
 		<h1><a href="<?php echo get_site_url(); ?>">Daily Eat Cheap</a></h1>
 		<nav>
 			<ul>
-				<li><a href="#">Log In</a></li>
+				<li><a href="/wp-admin" target="_self">Log In</a></li>
 				<li><a href="/submit-deal">Submit a Deal</a></li>
 			</ul>
 		</nav>

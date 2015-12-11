@@ -1,15 +1,42 @@
+<!--<say-hello></say-hello>-->
+
 <h2>Submit a Deal</h2>
+<div ng-hide="loggedIn" class="login-message">
+    You must be <a href="/wp-login.php?action=register" target="_self">logged in</a> to submit an eat! If you don't already have an account, you can get one for free <a href="/wp-login.php?action=register" target="_self">right here</a>!
+</div>
+<div ng-show="loggedIn" class="eat-form">
+    <label for="enter-zip">Enter your zip code to assist restaurant search:</label>
+    <input ng-model="search.zip" id="enter-zip" type="text"><br>
+    <label for="locate-restaurant">Find the restaurant with the deal:</label>
+    <input ng-model="search.name" id="locate-restaurant" type="text">
+    <button type="submit" ng-click="searchYelp()">Search</button><br>
+    <label for="locate-restaurant-results">Results:</label>
+    <div id="locate-restaurant-results" data-ng-repeat="business in businesses">
+        <a id="{{business.id}}" href="#" ng-click="selectRestaurant($event)">{{business.name}} &mdash; {{business.location.address[0]}}</a>
+    </div>
 
-<label for="enter-zip">Enter your zip code to assist restaurant search:</label>
-<input ng-model="search.zip" id="enter-zip" type="text"><br>
-
-<label for="locate-restaurant">Find the restaurant with the deal:</label>
-<input ng-model="search.name" id="locate-restaurant" type="text">
-
-<button type="submit" ng-click="searchYelp()">Search</button>
-
-<ul>
-    <li data-ng-repeat="business in businesses">
-        {{business.name}}
-    </li>
-</ul>
+    <hr>
+    <input type="hidden" name="yep-id" value="">
+    <label for="restaurant">Restaurant:</label>
+    <input type="text" id="restaurant"/>
+    <hr>
+    <label for="deal-days">Day(s) when the deal is valid:</label>
+    <div id="deal-days">
+        <label><input type="checkbox" value="everyday" />Every Day<br /></label>
+        <label><input type="checkbox" value="mon" />Monday<br /></label>
+        <label><input type="checkbox" value="tue" />Tuesday<br /></label>
+        <label><input type="checkbox" value="wed" />Wednesday<br /></label>
+        <label><input type="checkbox" value="thu" />Thursday<br /></label>
+        <label><input type="checkbox" value="fri" />Friday<br /></label>
+        <label><input type="checkbox" value="sat" />Saturday<br /></label>
+        <label><input type="checkbox" value="sun" />Sunday<br /></label>
+    </div>
+    <hr>
+    <label for="deal-desc">Description of deal:</label><br>
+    <textarea name="deal-desc" id="deal-desc" cols="50" rows="6"></textarea>
+    <hr>
+    <label for="deal-t-c">Terms & Conditions:</label><br>
+    <textarea name="deal-t-c" id="deal-t-c" cols="50" rows="6"></textarea>
+    <hr>
+    <button type="submit" ng-click="submitDeal()">Submit Deal</button>
+</div>

@@ -12,7 +12,7 @@ function WPService($http) {
     };
 
     WPService.getCurrentUser = function() {
-        return $http.get('wp-json/wp/v2/users/me').success(function(res){
+        return $http.get('wp-json/wp/v2/users/me?_envelope&context=view').success(function(res){
             WPService.currentUser = res;
         });
     };

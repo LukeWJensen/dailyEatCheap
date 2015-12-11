@@ -25,11 +25,12 @@ function dec_scripts() {
 
 //controllers
 	wp_enqueue_script( 'dec-ctrl-main', get_stylesheet_directory_uri() . '/app/scripts/controllers/main.js', $depends );
-	wp_enqueue_script( 'dec-ctrl-submit-deal', get_stylesheet_directory_uri() . '/app/scripts/controllers/submitDeal.js', $depends );
+	wp_enqueue_script( 'dec-ctrl-submit-deal', get_stylesheet_directory_uri() . '/app/scripts/controllers/submitEat.js', $depends );
 
 //service factories
 	wp_enqueue_script( 'dec-wp-service', get_stylesheet_directory_uri() . '/app/scripts/wpService.js', $depends );
 	wp_enqueue_script( 'dec-yelp-service', get_stylesheet_directory_uri() . '/app/scripts/yelpService.js', $depends );
+	wp_enqueue_script( 'dec-submit-eat-service', get_stylesheet_directory_uri() . '/app/scripts/submitEatService.js', $depends );
 
 //directives
 	wp_enqueue_script( 'dec-directives', get_stylesheet_directory_uri() . '/app/scripts/directives.js', $depends );
@@ -44,9 +45,9 @@ function dec_scripts() {
 			'scripts'     => get_template_directory_uri() . '/app/scripts/',
 			'controllers' => get_template_directory_uri() . '/app/scripts/controllers/',
 			'images'      => get_template_directory_uri() . '/app/images/',
-			'yelpOauthConsumerKey' => '	uMiv_Cl7_VFlzD7Yvx4Sug',
-			'yelpOauthToken' => 'DXKaD0lYWDyC3A3eE5pb3sr5w_w',
-			'yelpConsumerSecret' => 'c8c3ANwhWcg8UErIx_wLwn03tnMiykoy',
+			'yelpOauthConsumerKey' => 'uMiv_Cl7_VFlzD7Yvx4Sug',
+			'yelpConsumerSecret' => 'DXKaD0lYWDyC3A3eE5pb3sr5w_w',
+			'yelpOauthToken' => 'c8c3ANwhWcg8UErIx_wLwn03tnMiykoy',
 			'yelpTokenSecret' => 'kTw7R9S7WnKv9IGKreIQNMfcbhs'
 		)
 	);
