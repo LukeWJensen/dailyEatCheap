@@ -22,9 +22,16 @@
 
 <div ng-show="hideRestaurantSearch">
     <form ng-submit="submitEat($event)">
+
         <label for="selected-restaurant">Restaurant:</label>
         <span id="selected-restaurant">{{selectedRestaurant.text}} &mdash; {{selectedRestaurant.dataset.city}}, {{selectedRestaurant.dataset.state}}</span><a href="#">Wrong restaurant?</a>
         <hr>
+
+        <p>Looks like this restaurant already has some eats! Please have a look before submitting to help us avoid duplicates.</p>
+        <div id="existing-eats" data-ng-repeat="existingEat in existingEats">
+            <a ui-sref="home" class="existing-eat">{{existingEat.rw_deal_desc[0]}}</a>
+        </div>
+
         <label for="deal-days">Day(s) when the deal is valid:</label>
         <div id="deal-days">
             <label><input ng-click="addDay($event)" type="checkbox" value="2" />Every Day<br /></label>
@@ -46,5 +53,4 @@
         <pre>{{formData}}</pre>
         <button type="submit">Submit Deal</button>
     </form>
-</div>
 </div>

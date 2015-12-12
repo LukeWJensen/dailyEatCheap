@@ -1,6 +1,6 @@
 var app = angular.module('dailyEatCheapApp');
 
-app.controller('submitEatCtrl', function($scope, $http, WPService, yelpService, submitEatService){
+app.controller('submitEatCtrl', function($scope, $http, WPService, yelpService, existingEatsService, submitEatService){
 
     //check if user is logged in and bind that information to the scope
     WPService.getCurrentUser().then(function(res){
@@ -42,15 +42,24 @@ app.controller('submitEatCtrl', function($scope, $http, WPService, yelpService, 
     $scope.selectRestaurant = function(clickedItem){
 
         //bind the clicked element to the scope for use in the view
-            $scope.selectedRestaurant = clickedItem.toElement;
+        $scope.selectedRestaurant = clickedItem.toElement;
+
         //add selected restaurant's Yelp ID and additional info to formData object
-            $scope.formData.yelpID = clickedItem.toElement.id;
-            $scope.formData.name = clickedItem.toElement.dataset.name;
-            $scope.formData.address = clickedItem.toElement.dataset.address;
-            $scope.formData.city = clickedItem.toElement.dataset.city;
-            $scope.formData.state = clickedItem.toElement.dataset.state;
+        $scope.formData.yelpID = clickedItem.toElement.id;
+        $scope.formData.name = clickedItem.toElement.dataset.name;
+        $scope.formData.address = clickedItem.toElement.dataset.address;
+        $scope.formData.city = clickedItem.toElement.dataset.city;
+        $scope.formData.state = clickedItem.toElement.dataset.state;
+
+        //check for any existing Eats that exist for the selected restaurant
+        existingEatsService.checkEats($scope.formData.yelpID, function(eats) {
+
+            $scope.existingEats = eats;
+
+        });
+
         //set variable in the scope to hide the restaurant search form
-            $scope.hideRestaurantSearch = true;
+        $scope.hideRestaurantSearch = true;
 
     };
 

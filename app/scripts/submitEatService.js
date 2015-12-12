@@ -5,11 +5,10 @@ app.service('submitEatService', function($http){
     //allow user to select restaurant from returned collection for Eat submission
     this.submitEat = function(formData){
 
-        var eatTitle = formData.name+' - '+formData.address+' - '+formData.city+', '+formData.state;
-        var daysValidStr = formData.daysValid.toString();
+        var eatTitle = formData.name+' - '+formData.address+' - '+formData.city+', '+formData.state,
+            daysValidStr = formData.daysValid.toString();
 
-        console.log(daysValidStr);
-
+        //create the Eat
         $http.post('wp-json/wp/v2/eats', {
             'title': eatTitle,
             'slug': formData.yelpID,

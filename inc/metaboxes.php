@@ -219,3 +219,11 @@ add_filter( 'rwmb_meta_boxes', 'dec_register_meta_boxes' );
 	
 		return update_post_meta( $object->ID, $field_name, strip_tags( $value ) );
 	}
+
+//ALLOW REST API TO GET POSTS BY META VALUES
+function dec_allow_meta_query( $valid_vars ) {
+
+	$valid_vars = array_merge( $valid_vars, array( 'meta_key', 'meta_value' ) );
+	return $valid_vars;
+}
+add_filter( 'rest_query_vars', 'dec_allow_meta_query' );

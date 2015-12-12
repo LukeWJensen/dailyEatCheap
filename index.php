@@ -13,11 +13,11 @@
 		<nav>
 			<ul>
 				<li><a href="/wp-admin" target="_self">Log In</a></li>
-				<li><a href="/submit-deal">Submit a Deal</a></li>
+				<li><a ui-sref="submit-deal">Submit a Deal</a></li>
 			</ul>
 		</nav>
 	</header>
-	
+
 	<div ui-view></div>
 
 	<footer>

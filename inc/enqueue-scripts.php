@@ -31,6 +31,7 @@ function dec_scripts() {
 	wp_enqueue_script( 'dec-wp-service', get_stylesheet_directory_uri() . '/app/scripts/wpService.js', $depends );
 	wp_enqueue_script( 'dec-yelp-service', get_stylesheet_directory_uri() . '/app/scripts/yelpService.js', $depends );
 	wp_enqueue_script( 'dec-submit-eat-service', get_stylesheet_directory_uri() . '/app/scripts/submitEatService.js', $depends );
+	wp_enqueue_script( 'dec-existing-eat-service', get_stylesheet_directory_uri() . '/app/scripts/existingEatsService.js', $depends );
 
 //directives
 	wp_enqueue_script( 'dec-directives', get_stylesheet_directory_uri() . '/app/scripts/directives.js', $depends );
