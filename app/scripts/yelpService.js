@@ -13,7 +13,7 @@ app.service('yelpService', function($http){
         var url = 'http://api.yelp.com/v2/search';
         var params = {
             callback: 'angular.callbacks._0',
-            location: searchObj.zip,
+            location: searchObj.location,
             oauth_consumer_key: decLocalized.yelpOauthConsumerKey,
             oauth_token: decLocalized.yelpOauthToken,
             oauth_signature_method: "HMAC-SHA1",

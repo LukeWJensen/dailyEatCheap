@@ -1,4 +1,5 @@
 <?php
+//REGISTER CUSTOM POST TYPES
 function dec_post_types() {
 
 	//eats
@@ -26,6 +27,7 @@ function dec_post_types() {
 		'show_in_menu'       => true,
 		'show_in_rest'       => true,
 		'rest_base'          => 'Eats',
+		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'query_var'          => true,
 		'rewrite'            => array( 'slug' => 'eats' ),
 		'capability_type'    => 'post',
@@ -38,10 +40,35 @@ function dec_post_types() {
 }
 add_action( 'init', 'dec_post_types' );
 
-//ADD CUSTOM POST TYPES TO JSON API
-function dec_add_cpt_to_json_api(){
+//REGISTER CUSTOM TAXONOMIES
+function dec_taxonomies() {
+	
+	//days valid
+	$labels = array(
+		'name'              => _x( 'Days Valid', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Days Valid', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Days Valid' ),
+		'all_items'         => __( 'All Days Valid' ),
+		'parent_item'       => __( 'Parent Days Valid' ),
+		'parent_item_colon' => __( 'Parent Days Valid:' ),
+		'edit_item'         => __( 'Edit Days Valid' ),
+		'update_item'       => __( 'Update Days Valid' ),
+		'add_new_item'      => __( 'Add New Days Valid' ),
+		'new_item_name'     => __( 'New Days Valid Name' ),
+		'menu_name'         => __( 'Days Valid' ),
+	);
 
-	global $wp_post_types;
-	$wp_post_types['deal']->rest_controller_class = 'WP_REST_Posts_Controller';
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_in_rest'       => true,
+		'rest_base'          => 'days-valid',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'days_valid' )
+	);
+	register_taxonomy( 'days_valid', array( 'eat' ), $args );
 }
-add_action( 'init', 'dec_add_cpt_to_json_api' );
+add_action( 'init', 'dec_taxonomies', 25 );

@@ -1,42 +1,50 @@
 <!--<say-hello></say-hello>-->
 
 <h2>Submit a Deal</h2>
+
 <div ng-hide="loggedIn" class="login-message">
-    You must be <a href="/wp-login.php?action=register" target="_self">logged in</a> to submit an eat! If you don't already have an account, you can get one for free <a href="/wp-login.php?action=register" target="_self">right here</a>!
+    You must be <a href="login/" target="_self">logged in</a> to submit an eat! If you don't already have an account, you can get one for free <a href="register/" target="_self">right here</a>!
 </div>
-<div ng-show="loggedIn" class="eat-form">
-    <label for="enter-zip">Enter your zip code to assist restaurant search:</label>
-    <input ng-model="search.zip" id="enter-zip" type="text"><br>
-    <label for="locate-restaurant">Find the restaurant with the deal:</label>
-    <input ng-model="search.name" id="locate-restaurant" type="text">
-    <button type="submit" ng-click="searchYelp()">Search</button><br>
+
+<div ng-show="loggedIn" ng-hide="hideRestaurantSearch">
+    <form id="locate-restaurant" ng-submit="searchYelp()">
+        <label for="restaurant-location">Location of restaurant (city/zip):</label>
+        <input ng-model="search.location" id="restaurant-location" type="text"><br>
+        <label for="restaurant-name">Name of restaurant:</label>
+        <input ng-model="search.name" id="restaurant-name" type="text">
+        <button type="submit">Search</button>
+    </form>
     <label for="locate-restaurant-results">Results:</label>
     <div id="locate-restaurant-results" data-ng-repeat="business in businesses">
-        <a id="{{business.id}}" href="#" ng-click="selectRestaurant($event)">{{business.name}} &mdash; {{business.location.address[0]}}</a>
+        <a id="{{business.id}}" href="#" data-name="{{business.name}}" data-address="{{business.location.address[0]}}" data-city="{{business.location.city}}" data-state="{{business.location.state_code}}" ng-click="selectRestaurant($event)">{{business.name}} &mdash; {{business.location.address[0]}}</a>
     </div>
+</div>
 
-    <hr>
-    <input type="hidden" name="yep-id" value="">
-    <label for="restaurant">Restaurant:</label>
-    <input type="text" id="restaurant"/>
-    <hr>
-    <label for="deal-days">Day(s) when the deal is valid:</label>
-    <div id="deal-days">
-        <label><input type="checkbox" value="everyday" />Every Day<br /></label>
-        <label><input type="checkbox" value="mon" />Monday<br /></label>
-        <label><input type="checkbox" value="tue" />Tuesday<br /></label>
-        <label><input type="checkbox" value="wed" />Wednesday<br /></label>
-        <label><input type="checkbox" value="thu" />Thursday<br /></label>
-        <label><input type="checkbox" value="fri" />Friday<br /></label>
-        <label><input type="checkbox" value="sat" />Saturday<br /></label>
-        <label><input type="checkbox" value="sun" />Sunday<br /></label>
-    </div>
-    <hr>
-    <label for="deal-desc">Description of deal:</label><br>
-    <textarea name="deal-desc" id="deal-desc" cols="50" rows="6"></textarea>
-    <hr>
-    <label for="deal-t-c">Terms & Conditions:</label><br>
-    <textarea name="deal-t-c" id="deal-t-c" cols="50" rows="6"></textarea>
-    <hr>
-    <button type="submit" ng-click="submitDeal()">Submit Deal</button>
+<div ng-show="hideRestaurantSearch">
+    <form ng-submit="submitEat($event)">
+        <label for="selected-restaurant">Restaurant:</label>
+        <span id="selected-restaurant">{{selectedRestaurant.text}} &mdash; {{selectedRestaurant.dataset.city}}, {{selectedRestaurant.dataset.state}}</span><a href="#">Wrong restaurant?</a>
+        <hr>
+        <label for="deal-days">Day(s) when the deal is valid:</label>
+        <div id="deal-days">
+            <label><input ng-click="addDay($event)" type="checkbox" value="2" />Every Day<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="3" />Monday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="4" />Tuesday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="5" />Wednesday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="6" />Thursday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="7" />Friday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="8" />Saturday<br /></label>
+            <label><input ng-click="addDay($event)" type="checkbox" value="9" />Sunday<br /></label>
+        </div>
+        <hr>
+        <label for="deal-desc">Description of deal:</label><br>
+        <textarea id="deal-desc" ng-model="formData.dealDesc" name="deal-desc" cols="50" rows="6"></textarea>
+        <hr>
+        <label for="deal-t-c">Terms & Conditions:</label><br>
+        <textarea id="deal-t-c" ng-model="formData.dealTC" name="deal-t-c" cols="50" rows="6"></textarea>
+        <hr>
+        <pre>{{formData}}</pre>
+        <button type="submit">Submit Deal</button>
+    </form>
+</div>
 </div>

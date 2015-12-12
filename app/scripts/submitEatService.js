@@ -2,10 +2,25 @@ var app = angular.module('dailyEatCheapApp');
 
 app.service('submitEatService', function($http){
 
-    this.selectRestaurant = function(selectedResult){
+    //allow user to select restaurant from returned collection for Eat submission
+    this.submitEat = function(formData){
 
-        console.log(selectedResult.toElement.id);
+        var eatTitle = formData.name+' - '+formData.address+' - '+formData.city+', '+formData.state;
+        var daysValidStr = formData.daysValid.toString();
 
-    }
+        console.log(daysValidStr);
+
+        $http.post('wp-json/wp/v2/eats', {
+            'title': eatTitle,
+            'slug': formData.yelpID,
+            'rw_yelp_id': formData.yelpID,
+            'days_valid': daysValidStr,
+            'rw_deal_desc': formData.dealDesc,
+            'rw_deal_terms': formData.dealTC,
+            'status': 'publish'
+        }).success(function(){
+            console.log('post created');
+        });
+    };
 
 });

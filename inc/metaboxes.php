@@ -16,7 +16,58 @@ function dec_register_meta_boxes( $meta_boxes ) {
 		)
 	);
 
-// Deals Info Metabox
+// Days Valid Metabox
+$meta_boxes[] = array(
+	'id'         => 'deal_days',
+	'title'      => 'Day(s) Valid',
+	'post_types' => array( 'eat' ),
+	'context'    => 'normal',
+	'priority'   => 'high',
+	'fields'     => array(
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Every Day',
+			'id'    => $prefix . 'deal_day_every'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Monday',
+			'id'    => $prefix . 'deal_day_mon'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Tuesday',
+			'id'    => $prefix . 'deal_day_tue'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Wednesday',
+			'id'    => $prefix . 'deal_day_wed'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Thursday',
+			'id'    => $prefix . 'deal_day_thu'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Friday',
+			'id'    => $prefix . 'deal_day_fri'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Saturday',
+			'id'    => $prefix . 'deal_day_sat'
+		),
+		array(
+			'type'  => 'checkbox',
+			'name'  => 'Sunday',
+			'id'    => $prefix . 'deal_day_sun'
+		),
+	)
+);
+
+// Deal Info Metabox
 	$meta_boxes[] = array(
 		'id'         => 'deal_info',
 		'title'      => 'Deal Info',
@@ -24,22 +75,6 @@ function dec_register_meta_boxes( $meta_boxes ) {
 		'context'    => 'normal',
 		'priority'   => 'high',
 		'fields'     => array(
-			array(
-				'type'  => 'checkbox_list',
-				'name'  => 'Day(s) Valid',
-				'desc'  => 'The day or days during which the deal applies',
-				'id'    => $prefix . 'deal_days',
-				'options' => array(
-					'everyday' => 'Every Day',
-					'mon' => 'Monday',
-					'tue' => 'Tuesday',
-					'wed' => 'Wednesday',
-					'thu' => 'Thursday',
-					'fri' => 'Friday',
-					'sat' => 'Saturday',
-					'sun' => 'Sunday'
-				)
-			),
 			array(
 				'name'  => 'Deal Description',
 				'desc'  => 'What\'s the deal with this deal??',
@@ -64,6 +99,32 @@ add_filter( 'rwmb_meta_boxes', 'dec_register_meta_boxes' );
 
 
 //EXPOSE META FIELDS IN THE WP REST API
+
+	/**
+	 * Add the terms from the "days_valid" taxonomy to REST API responses for posts read and write
+	 */
+	add_action( 'rest_api_init', 'dec_register_days_valid_terms' );
+	function dec_register_days_valid_terms() {
+		register_api_field( 'eat',
+			'days_valid',
+			array(
+				'get_callback'    => 'dec_get_days_valid_terms',
+				'update_callback' => 'dec_update_days_valid_terms',
+				'schema'          => null,
+			)
+		);
+	}
+	function dec_get_days_valid_terms( $object, $taxonomies, $request ) {
+		return wp_get_object_terms( $object[ 'id' ], $taxonomies );
+	}
+
+	function dec_update_days_valid_terms( $value, $object) {
+
+		$termIDs = json_decode('[' . $value . ']', true);
+
+		return wp_set_object_terms( $object->ID, $termIDs, 'days_valid', true );
+
+	}
 
 	///// Yelp restaurant ID /////
 	/**
@@ -111,30 +172,6 @@ add_filter( 'rwmb_meta_boxes', 'dec_register_meta_boxes' );
 		}
 
 		return update_post_meta( $object->ID, $field_name, strip_tags( $value ) );
-	}
-
-	///// deal days /////
-	add_action( 'rest_api_init', 'dec_register_deal_days' );
-	function dec_register_deal_days() {
-		register_api_field( 'eat',
-			'rw_deal_days',
-			array(
-				'get_callback'    => 'dec_get_deal_days',
-				'update_callback' => 'dec_update_deal_days',
-				'schema'          => null,
-			)
-		);
-	}
-	function dec_get_deal_days( $object, $field_name, $request ) {
-		return get_post_meta( $object[ 'id' ], $field_name );
-	}
-	function dec_update_deal_days( $value, $object, $field_name ) {
-		if ( ! $value || ! is_string( $value ) ) {
-			return;
-		}
-	
-		return update_post_meta( $object->ID, $field_name, strip_tags( $value ) );
-	
 	}
 
 	///// deal description /////
