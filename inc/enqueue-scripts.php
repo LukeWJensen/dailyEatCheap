@@ -25,6 +25,7 @@ function dec_scripts() {
 
 //controllers
 	wp_enqueue_script( 'dec-ctrl-main', get_stylesheet_directory_uri() . '/app/scripts/controllers/mainCtrl.js', $depends );
+	wp_enqueue_script( 'dec-ctrl-eat', get_stylesheet_directory_uri() . '/app/scripts/controllers/eatCtrl.js', $depends );
 	wp_enqueue_script( 'dec-ctrl-submit-deal', get_stylesheet_directory_uri() . '/app/scripts/controllers/submitEatCtrl.js', $depends );
 
 //service factories
@@ -32,6 +33,7 @@ function dec_scripts() {
 	wp_enqueue_script( 'dec-yelp-service', get_stylesheet_directory_uri() . '/app/scripts/yelpService.js', $depends );
 	wp_enqueue_script( 'dec-submit-eat-service', get_stylesheet_directory_uri() . '/app/scripts/submitEatService.js', $depends );
 	wp_enqueue_script( 'dec-existing-eat-service', get_stylesheet_directory_uri() . '/app/scripts/existingEatsService.js', $depends );
+	wp_enqueue_script( 'dec-eat-data-service', get_stylesheet_directory_uri() . '/app/scripts/eatDataService.js', $depends );
 
 //directives
 	wp_enqueue_script( 'dec-directives', get_stylesheet_directory_uri() . '/app/scripts/directives.js', $depends );

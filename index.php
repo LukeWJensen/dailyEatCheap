@@ -13,7 +13,7 @@
 		<nav>
 			<ul>
 				<li><a href="/wp-admin" target="_self">Log In</a></li>
-				<li><a ui-sref="submit-deal">Submit a Deal</a></li>
+				<li><a ui-sref="submit-eat">Submit an Eat</a></li>
 			</ul>
 		</nav>
 	</header>

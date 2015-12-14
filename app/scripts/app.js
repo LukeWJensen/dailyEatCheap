@@ -17,19 +17,27 @@ var app = angular
         'ngTouch'
     ]);
 
-app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider, $httpProvider) {
 
     $locationProvider.html5Mode(true);
+
+    $urlMatcherFactoryProvider.strictMode(false);
 
     $stateProvider.state('home', {
         url: '/',
         controller: 'MainCtrl',
         templateUrl: decLocalized.views + 'home.html'
-    }).state('submit-deal', {
-        url: '/submit-deal',
-        controller: 'submitEatCtrl',
+    }).state('submit-eat', {
+        url: '/submit-eat',
+        controller: 'SubmitEatCtrl',
         templateUrl: decLocalized.views + 'submitDeal.html'
+    }).state('eat', {
+        url: '/:slug',
+        controller: 'EatCtrl',
+        templateUrl: decLocalized.views + 'eat.html'
     });
+
+    //$urlRouterProvider.otherwise('/');
 
     $httpProvider.interceptors.push([function () {
         return {
@@ -42,8 +50,5 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
             }
         };
     }]);
-
-
-    //$urlRouterProvider.otherwise('/');
 
 });

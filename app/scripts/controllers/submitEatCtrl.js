@@ -1,6 +1,6 @@
 var app = angular.module('dailyEatCheapApp');
 
-app.controller('submitEatCtrl', function($scope, $http, WPService, yelpService, existingEatsService, submitEatService){
+app.controller('SubmitEatCtrl', function($scope, $http, WPService, yelpService, existingEatsService, submitEatService){
 
     //check if user is logged in and bind that information to the scope
     WPService.getCurrentUser().then(function(res){
@@ -27,9 +27,8 @@ app.controller('submitEatCtrl', function($scope, $http, WPService, yelpService, 
         $scope.businesses = [];
         yelpService.retrieveYelp($scope.search, function (data) {
 
-            console.log(data);
-
             $scope.businesses = data.businesses;
+
         });
     };
 
