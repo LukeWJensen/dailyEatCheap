@@ -14,7 +14,8 @@ var app = angular
         'ngAnimate',
         'ngResource',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'uiGmapgoogle-maps'
     ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider, $httpProvider) {

@@ -28,4 +28,22 @@ app.service('yelpService', function($http){
         $http.jsonp(url, {params: params}).success(callback);
     }
 
+    this.getRestaurantData = function(yelpID, callback) {
+        var method = 'GET';
+        var url = 'http://api.yelp.com/v2/business/'+yelpID;
+        var params = {
+            callback: 'angular.callbacks._0',
+            oauth_consumer_key: decLocalized.yelpOauthConsumerKey,
+            oauth_token: decLocalized.yelpOauthToken,
+            oauth_signature_method: "HMAC-SHA1",
+            oauth_timestamp: new Date().getTime(),
+            oauth_nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        };
+        var consumerSecret = decLocalized.yelpConsumerSecret;
+        var tokenSecret = decLocalized.yelpTokenSecret;
+        var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, { encodeSignature: false});
+        params['oauth_signature'] = signature;
+        return $http.jsonp(url, {params: params}).success(callback);
+    }
+
 });

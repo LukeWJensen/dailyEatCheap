@@ -1,23 +1,34 @@
 <?php
 function dec_scripts() {
 
+//enqueue stylesheet
+	wp_enqueue_style( 'dec-styles', get_stylesheet_uri() );
+
 //register angular and additional modules
+	wp_register_script( 'lodash', get_stylesheet_directory_uri() . '/bower_components/lodash/lodash.js' );
 	wp_register_script( 'angular', get_stylesheet_directory_uri() . '/bower_components/angular/angular.js' );
+	wp_register_script( 'angular-simple-logger', get_stylesheet_directory_uri() . '/bower_components/angular-simple-logger/dist/angular-simple-logger.js' );
 	wp_register_script( 'angular-ui-router', get_stylesheet_directory_uri() . '/bower_components/angular-ui-router/release/angular-ui-router.js' );
 	wp_register_script( 'angular-resource', get_stylesheet_directory_uri() . '/bower_components/angular-resource/angular-resource.js' );
 	wp_register_script( 'angular-sanitize', get_stylesheet_directory_uri() . '/bower_components/angular-sanitize/angular-sanitize.js' );
 	wp_register_script( 'angular-touch', get_stylesheet_directory_uri() . '/bower_components/angular-touch/angular-touch.js' );
 	wp_register_script( 'angular-animate', get_stylesheet_directory_uri() . '/bower_components/angular-animate/angular-animate.js' );
 	wp_register_script( 'oauth-signature', get_stylesheet_directory_uri() . '/bower_components/oauth-signature/dist/oauth-signature.js' );
+	wp_register_script( 'google-maps-api', '//maps.googleapis.com/maps/api/js?sensor=false' );
+	wp_register_script( 'angular-google-maps', get_stylesheet_directory_uri() . '/bower_components/angular-google-maps/dist/angular-google-maps.js' );
 
 	$depends = array(
 		'angular',
+		'angular-simple-logger',
 		'angular-ui-router',
 		'angular-resource',
 		'angular-sanitize',
 		'angular-touch',
 		'angular-animate',
-		'oauth-signature'
+		'oauth-signature',
+		'google-maps-api',
+		'lodash',
+		'angular-google-maps'
 	);
 
 //main app file

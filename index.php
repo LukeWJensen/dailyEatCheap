@@ -22,6 +22,7 @@
 
 	<footer>
 		<p>&copy; <?php echo date( 'Y' ); ?> Daily Eat Cheap</p>
+		<img src="wp-content/themes/dailyEatCheap/app/images/yelp_powered_btn_dark@2x.png" alt="Powerd by Yelp"/>
 	</footer>
 
 </body>

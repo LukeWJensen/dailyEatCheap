@@ -1,3 +1,21 @@
-This is an eat.
+<div class="col-one">
+    <img src="{{rData.image_url}}" alt="{{rData.name}}" class="r-thumb"/>
+    <h2>{{rData.name}}</h2>
+    <img src="{{rData.rating_img_url}}" alt="Yelp user rating: {{rData.rating}}" class="rating">
+    <a href="{{rData.url}}" class="yelpLink" target="_blank">Additional restaurant details on <img src="/wp-content/themes/dailyEatCheap/app/images/yelp-logo-medium@2x.png" alt="Yelp"/></a>
+</div>
+<div class="col-two">
+    <div class="deal-info">
+        <span class="deal">{{eatData.rw_deal_desc[0]}}</span><br>
+        <span class="t-and-c">{{eatData.rw_deal_terms[0]}}</span>
+    </div>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+        <ui-gmap-marker idkey="marker.id" coords="marker.coords"></ui-gmap-marker>
+    </ui-gmap-google-map>
 
-<p>{{eatData.slug}}</p>
+    <address>
+        <span class="street-address">{{rData.location.display_address[0]}}</span><br>
+        <span class="neighborhood">{{rData.location.display_address[1]}}</span><br>
+        <span class="city-state-zip">{{rData.location.display_address[2]}}</span>
+    </address>
+</div>

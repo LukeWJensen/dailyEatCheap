@@ -29,6 +29,8 @@ app.controller('SubmitEatCtrl', function($scope, $http, WPService, yelpService, 
 
             $scope.businesses = data.businesses;
 
+            console.log($scope);
+
         });
     };
 
