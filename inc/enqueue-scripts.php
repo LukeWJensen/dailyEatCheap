@@ -6,6 +6,7 @@ function dec_scripts() {
 
 //register angular and additional modules
 	wp_register_script( 'lodash', get_stylesheet_directory_uri() . '/bower_components/lodash/lodash.js' );
+	wp_register_script( 'classie', get_stylesheet_directory_uri() . '/bower_components/classie/classie.js' );
 	wp_register_script( 'angular', get_stylesheet_directory_uri() . '/bower_components/angular/angular.js' );
 	wp_register_script( 'angular-simple-logger', get_stylesheet_directory_uri() . '/bower_components/angular-simple-logger/dist/angular-simple-logger.js' );
 	wp_register_script( 'angular-ui-router', get_stylesheet_directory_uri() . '/bower_components/angular-ui-router/release/angular-ui-router.js' );
@@ -18,6 +19,8 @@ function dec_scripts() {
 	wp_register_script( 'angular-google-maps', get_stylesheet_directory_uri() . '/bower_components/angular-google-maps/dist/angular-google-maps.js' );
 
 	$depends = array(
+		'lodash',
+		'classie',
 		'angular',
 		'angular-simple-logger',
 		'angular-ui-router',
@@ -27,7 +30,6 @@ function dec_scripts() {
 		'angular-animate',
 		'oauth-signature',
 		'google-maps-api',
-		'lodash',
 		'angular-google-maps'
 	);
 

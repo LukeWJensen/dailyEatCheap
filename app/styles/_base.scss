@@ -1,0 +1,207 @@
+//VARIABLES
+$blue: #0b78b7;
+$offBlack: #2f302f;
+$offWhite: #f7f7f7;
+$gray: #e8e9ea;
+
+//MIXINS
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+//LINKS
+a {
+    text-decoration: none;
+}
+button, .button {
+    display: inline-block;
+    padding: 0.8rem 3rem;
+    text-transform: capitalize;
+    border-radius: 1rem;
+    border: 0;
+}
+
+//TYPOGRAPHY
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+
+//SITE BRANDING
+.site-title {
+    text-transform: uppercase;
+    font-size: 3.4rem;
+    line-height: 1;
+    span {
+        display: block;
+        font-family: 'Norican', cursive;
+        text-transform: capitalize;
+    }
+}
+
+//MENU
+#menu-toggle {
+    width: 60px;
+    height: 45px;
+    position: absolute;
+    top: 2rem;
+    right: 1.8rem;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    span {
+        display: block;
+        position: absolute;
+        height: 9px;
+        width: 100%;
+        background: $offWhite;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
+        &:nth-child(1){
+            top: 0px;
+        }
+        &:nth-child(2){
+            top: 18px;
+        }
+        &:nth-child(3){
+            top: 36px;
+        }
+    }
+}
+#menu-toggle.open {
+    span {
+        &:nth-child(1){
+            top: 18px;
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+        &:nth-child(2){
+            opacity: 0;
+            left: -60px;
+        }
+        &:nth-child(3){
+            top: 18px;
+            -webkit-transform: rotate(-135deg);
+            -moz-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+        }
+    }
+}
+.menu {
+    background: $blue;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -50%;
+    padding: 0.8rem 1.8rem;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    a {
+        color: $offWhite;
+    }
+    .button {
+        background: $offBlack;
+    }
+    .login {
+        float: right;
+    }
+    .location {
+        clear: both;
+        padding: 3rem 0 0 0;
+        font-size: 2.4rem;
+        form {
+            padding: 2rem 0 3rem 0;
+            font-size: 1.4rem;
+            label {
+                font-size: 2.4rem;
+                padding: 0 0 0.4rem 0;
+            }
+        }
+        input {
+            height: 3.3rem;
+            border-radius: 0.3rem;
+            border: 0;
+            width: 12.8rem;
+            margin: 0 0.1rem 0 0;
+            text-indent: 0.4rem;
+        }
+        button {
+            background: $offBlack;
+            color: white;
+        }
+    }
+    .label, label {
+        color: $offWhite;
+        padding: 0 1rem 0 0;
+    }
+    .submit {
+        font-size: 2.8rem;
+    }
+}
+.menu.open {
+    right: 0;
+}
+
+//HEADER & FOOTER
+header,footer {
+    background: $offBlack;
+    color: $offWhite;
+    padding: 0.8rem 1.8rem;
+    a {
+        color: $offWhite;
+    }
+}
+header {
+    position: relative;
+}
+footer {
+    @include clearfix;
+    .copyright {
+        float: left;
+    }
+    .yelp-link {
+        float: right;
+        display: block;
+        img {
+            max-height: 4rem;
+        }
+    }
+}
+
+//CONTENT
+.content {
+    padding: 0.8rem 1.8rem;
+    background: $gray;
+    position: relative;
+}
